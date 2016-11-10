@@ -19,7 +19,6 @@ def call():
 		return abort(403)
 
 	resp = twiml.Response()
-	resp.say(request.url)
 	with resp.gather(timeout=5, action="/handle-input", finishOnKey="#", method="POST") as g:
 		g.say("Hi, please enter your FizzBuzz number and then press pound")
 	
