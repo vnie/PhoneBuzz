@@ -3,9 +3,6 @@ from twilio import twiml
 from twilio.util import RequestValidator
 import os
 
-***REMOVED***
-validator = RequestValidator(AUTH_TOKEN)
-
 app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
