@@ -1,9 +1,9 @@
 from flask import Flask, Response, request
 from twilio import twiml
-#from twilio.util import RequestValidator
+from twilio.util import RequestValidator
 
-#***REMOVED***
-#validator = RequestValidator(AUTH_TOKEN)
+***REMOVED***
+validator = RequestValidator(AUTH_TOKEN)
 
 app = Flask(__name__)
 
