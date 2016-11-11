@@ -25,20 +25,23 @@ def call():
 
 		# Make call
 		client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-		call = client.calls.create(to=phone_num, from_=TWILIO_PHONE_NUMBER, url=URL+"/call")
-		return render_template('confirmation.html')
+		try:
+			call = client.calls.create(to=phone_num, from_=TWILIO_PHONE_NUMBER, url=URL+"/call")
+			return render_template('confirmation.html')
+		except:
+			pass
 		
-	return render_template('index.html', form=phone_form)
+	return render_template('index.html')
 
 
-@app.route("/call", methods=['GET'])
+@app.route("/call", methods=['GET', 'POST'])
 def get_input():
 	''' Handles incoming calls '''
-	#validator = RequestValidator(TWILIO_AUTH_TOKEN)
-	#signature = request.headers.get('X-Twilio-Signature', '')
-	
-	#if not validator.validate(request.url, request.form, signature):
-	#	return abort(403)
+#	validator = RequestValidator(TWILIO_AUTH_TOKEN)
+#	signature = request.headers.get('X-Twilio-Signature', '')
+#	
+#	if not validator.validate(request.url, request.form, signature):
+#		return abort(403)
 
 	resp = twiml.Response()
 	with resp.gather(timeout=5, action="/handle-input", finishOnKey="#", method="POST") as g:
@@ -50,7 +53,6 @@ def get_input():
 @app.route("/handle-input", methods=['POST'])
 def handle_input():
 	''' Handles user input ''' 
-	
 	resp = twiml.Response()
 	
 	try:
