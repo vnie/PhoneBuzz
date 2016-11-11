@@ -8,7 +8,7 @@ import os
 
 TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', None)
 TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', None)
-TWILIO_PHONE_NUMBER = os.environ.get('TWILIO_PHONE_NUM', None)
+TWILIO_PHONE_NUMBER = os.environ.get('TWILIO_PHONE_NUMBER', None)
 SECRET_KEY = os.environ.get('SECRET_KEY', None)
 URL = "https://damp-scrubland-52655.herokuapp.com"
 
@@ -25,9 +25,7 @@ def call():
 
 		# Make call
 		client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-		call = client.calls.create(to=phone_num, 
-								   from_=TWILIO_PHONE_NUMBER, 
-								   url=URL+"/call")
+		call = client.calls.create(to=phone_num, from_=TWILIO_PHONE_NUMBER, url=URL+"/call")
 		return render_template('confirmation.html')
 		
 	return render_template('index.html', form=phone_form)
