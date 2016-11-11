@@ -8,6 +8,6 @@ class PhoneForm(Form):
 	def submit(self):
 		# Expects 9 digit phone numbers i.e
 		# 555-555-555
-		if self.phone_num.data != None and (len(self.phone_num.data) == 9:
+		if self.phone_num.data != None and len(self.phone_num.data) == 9:
 			return True
 		return False
