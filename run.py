@@ -31,7 +31,7 @@ def call():
 		except:
 			pass
 		
-	return render_template('index.html')
+	return render_template('index.html', form=phone_form)
 
 
 @app.route("/call", methods=['GET', 'POST'])
