@@ -2,6 +2,7 @@ from flask import Flask, Response, request, abort, render_template
 from twilio import twiml
 from twilio.rest import TwilioRestClient
 from twilio.util import RequestValidator
+import phonenumbers
 import form
 import os
 
@@ -10,7 +11,6 @@ TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', None)
 TWILIO_PHONE_NUMBER = os.environ.get('TWILIO_PHONE_NUM', None)
 SECRET_KEY = os.environ.get('SECRET_KEY', None)
 URL = "https://damp-scrubland-52655.herokuapp.com"
-#URL = "localhost:5000"
 
 app = Flask(__name__)
 app.config.update(SECRET_KEY=SECRET_KEY)
@@ -20,7 +20,8 @@ def call():
 	phone_form = form.PhoneForm()
 
 	if phone_form.submit():
-		phone_num = phone_form.phone_num.data
+		phone_num = phonenumbers.format_number(phonenumbers.parse(phone_form.phone_num.data, 'US'),
+											   phonenumbers.PhoneNumberFormat.NATIONAL)
 		# Make call
 		client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 		call = client.calls.create(to=phone_num, 
