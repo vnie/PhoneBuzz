@@ -1,28 +1,34 @@
-from flask import Flask, Response, request, abort
+from flask import Flask, Response, request, abort, render_template
 from twilio import twiml
 from twilio.util import RequestValidator
+import form
 import os
 
-
 TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', None)
-URL = "https://damp-sands-51785.herokuapp.com/"
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET'])
-def call():
-	''' Handles incoming calls '''
-	validator = RequestValidator(TWILIO_AUTH_TOKEN)
-	signature = request.headers.get('X-Twilio-Signature', '')
-	
-	if not validator.validate(request.url, request.form, signature):
-		return abort(403)
+#@app.route("/", methods=['GET'])
+#def call():
+#	''' Handles incoming calls '''
+#	validator = RequestValidator(TWILIO_AUTH_TOKEN)
+#	signature = request.headers.get('X-Twilio-Signature', '')
+#	
+#	if not validator.validate(request.url, request.form, signature):
+#		return abort(403)
+#
+#	resp = twiml.Response()
+#	with resp.gather(timeout=5, action="/handle-input", finishOnKey="#", method="POST") as g:
+#		g.say("Hi, please enter your FizzBuzz number and then press pound")
+#	
+#	return str(resp)
 
-	resp = twiml.Response()
-	with resp.gather(timeout=5, action="/handle-input", finishOnKey="#", method="POST") as g:
-		g.say("Hi, please enter your FizzBuzz number and then press pound")
-	
-	return str(resp)
+
+@app.route("/", methods=['GET', 'POST'])
+def call():
+	form = PhoneForm()
+
+	return render_template('index.html', form=form)
 
 
 @app.route("/handle-input", methods=['POST'])
