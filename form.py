@@ -6,8 +6,7 @@ class PhoneForm(Form):
 	phone_num = TextField('Phone # to call', phone_num_validator)
 
 	def submit(self):
-		# Expects 9 digit phone numbers i.e
-		# 555-555-555
-		if self.phone_num.data != None and len(self.phone_num.data) == 9:
-			return True
-		return False
+		# Expects 10 digit phone numbers i.e
+		# 555-555-5555
+		return self.phone_num.data != None and len(self.phone_num.data) == 9:
+

@@ -22,11 +22,13 @@ def call():
 	if phone_form.submit():
 		phone_num = phonenumbers.format_number(phonenumbers.parse(phone_form.phone_num.data, 'US'),
 											   phonenumbers.PhoneNumberFormat.NATIONAL)
+
 		# Make call
 		client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 		call = client.calls.create(to=phone_num, 
-								   From=TWILIO_PHONE_NUMBER, 
-								   url=URL + "/call")
+								   from_=TWILIO_PHONE_NUMBER, 
+								   url=URL+"/call")
+		return render_template('confirmation.html')
 		
 	return render_template('index.html', form=phone_form)
 
