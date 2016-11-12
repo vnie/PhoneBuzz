@@ -1,10 +1,8 @@
 # PhoneBuzz
 
 App is currently hosted at:
-https://damp-sands-51785.herokuapp.com/
-
-Call Twilio #:
-+1 626-247-3812
+https://damp-scrubland-52655.herokuapp.com
+However, the Twilio # attached cannot call numbers it has not added to its list verified caller IDs.
 
 
 ### To run locally
@@ -15,7 +13,12 @@ First install the required Python libraries.
 
 Set the necessary environment variable(s).
 
-`export TWILIO_AUTH_TOKEN='XXXXXXXXXXXXXXXX'`
+```
+export TWILIO_AUTH_TOKEN='XXXXXXXXXXXXXXXX'
+export TWILIO_ACCOUNT_SID='XXXXXXXXXXXXXXX'
+export TWILIO_PHONE_NUMBER='XXXXXXXXXXXXXX'
+export SECRET_KEY='ANYTHING'
+```
 
 To test locally, run a local server/tunnel of your choice. I decided to use ngrok.
 
