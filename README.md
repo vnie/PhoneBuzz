@@ -21,4 +21,9 @@ To test locally, run a local server/tunnel of your choice. I decided to use ngro
 
 `ngrok http 5000`
 
+Start app.
+
+`python run.py`
+
 Then point your Twilio number to the ngrok forwarding URL.
+
