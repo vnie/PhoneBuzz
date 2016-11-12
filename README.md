@@ -6,6 +6,9 @@ https://damp-sands-51785.herokuapp.com/
 Call Twilio #:
 +1 626-247-3812
 
+
+### To run locally
+
 First install the required Python libraries.
 
 `pip install -r requirements.txt`
