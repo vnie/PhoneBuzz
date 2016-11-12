@@ -1,6 +1,10 @@
 # PhoneBuzz
 
-App is currently hosted at 
+App is currently hosted at:
+https://damp-sands-51785.herokuapp.com/
+
+Call Twilio #:
++1 626-247-3812
 
 First install the required Python libraries.
 
@@ -15,4 +19,3 @@ To test locally, run a local server/tunnel of your choice. I decided to use ngro
 `ngrok http 5000`
 
 Then point your Twilio number to the ngrok forwarding URL.
-
